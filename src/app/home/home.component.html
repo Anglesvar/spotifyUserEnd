@@ -1,0 +1,120 @@
+<div style="color: seashell;z-index: 30;font-weight: bolder;position: absolute;top: 20px;right: 100px;">Welcome
+    <mat-icon style="position: relative;top: 7px;">face</mat-icon>{{displayName}}</div>
+<div class="row">
+    <div class="col-3" style="background-color: rgba(255,255,255,0.8);height: 100vh;">
+        <button class="create-playlist-btn" (click)="openPlaylistForm()" mat-raised-button color="primary">Create
+            Playlist
+        </button>
+        <form *ngIf="!flag" class="form" [formGroup]="playlistForm">
+            <div class="form-group">
+                <input type="text" class="form-control" id="formGroupExampleInput" formControlName="playListName" placeholder="Enter Playlist name">
+            </div>
+
+            <button class="btn btn-outline-success" (click)="createPlaylist()">+ Create</button>
+        </form>
+
+        <mat-list style="position: relative;top: 20px;background-color: rgba(0,0,0,0.1);overflow: auto;">
+            <mat-list-item *ngFor="let playlist of userPlaylist;last as last">
+                <button mat-button color="primary" style="width: 200px;" (click)="displaySongs(playlist.id)">{{playlist.playListName}}</button>
+                <!-- <button mat-button style="position: relative;left: 40px;">
+                    <mat-icon>edit</mat-icon>
+                </button> -->
+                <button mat-button color="warn" style="position: relative;right: 0;" (click)=" deletePlaylist(playlist.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+
+                <mat-divider *ngIf="!last"></mat-divider>
+
+            </mat-list-item>
+
+        </mat-list>
+    </div>
+    <div class="col-9" style="margin-top: 20px;">
+        <mat-card style="margin-bottom: 70px;">
+            <mat-card-header>
+                <!-- <mat-card-title>Material Style Advanced Audio Player</mat-card-title>
+            <mat-card-subtitle>Material Style Advanced Audio Player</mat-card-subtitle> -->
+                <!-- <mat-card-title><button class="btn btn-outline-primary create-playlist-btn">Create Playlist</button></mat-card-title> -->
+            </mat-card-header>
+
+            <mat-card-content class="row justify-contents-around">
+                <div class="col-12" *ngIf="displayOrNot">
+                    <div class="row">
+                        <div class="ngx-demo-content col-3">
+                            <h6>Data</h6>
+                            <div class="ngx-demo-content ngx-demo-block">
+                                <button mat-stroked-button (click)="displayExcludedSongs()">Add/Del Tracks To/From Playlist</button>
+                            </div>
+
+                        </div>
+
+                        <div class="col-3" style="height: 200px;overflow: auto;float: left;">
+                            <h5>Songs to Add</h5>
+                            <mat-list>
+                                <mat-list-item *ngFor="let song of ExcludedSongs;last as last">
+
+                                    <button mat-button color="warn" (click)="addSongToPlayList(song.id)">{{song.songName}}</button>
+                                    <mat-divider *ngIf="!last"></mat-divider>
+                                </mat-list-item>
+                            </mat-list>
+                        </div>
+                        <div class="col-3" style="height: 200px;overflow: auto;float: left;">
+                            <h5>Songs to Delete</h5>
+                            <mat-list>
+                                <mat-list-item *ngFor="let song of currentPlaylist;last as last">
+                                    <button mat-button color="warn" (click)="deleteFromPlayList(song.id)">{{song.songName}}</button>
+                                    <mat-divider *ngIf="!last"></mat-divider>
+                                </mat-list-item>
+                            </mat-list>
+                        </div>
+                        <div class="ngx-demo-content col-3">
+                            <h6>Logging</h6>
+
+                            <p class="ngx-demo-content">
+                                <button (click)="logCurrentTime()" mat-stroked-button>Log Current
+                                    Time
+                                </button> {{currentTime}}
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <mat-advanced-audio-player #advanced (trackEnded)="onEnded($event)" [autoPlay]="true" [displayPlaylist]="msaapDisplayPlayList" [displayTitle]="msaapDisplayTitle" [displayVolumeControls]="msaapDisplayVolumeControls" [expanded]="true" [playlist]="msaapPlaylist"
+                        muted="muted"></mat-advanced-audio-player>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <div class="ngx-demo-content ngx-demo-block">
+            <!-- <button mat-stroked-button (click)="displayPlaylistSongs()">Delete from playlist</button> -->
+            <form class="form-row" [formGroup]="searchForm">
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" placeholder="Search Songs.." formControlName="searchSong" (keyup)="searchSong(this)">
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" placeholder="Search Album.." formControlName="searchAlbum" (keyup)="searchByAlbum(this)">
+                </div>
+                <div class="input-group col-md-4">
+                    <input type="text" class="form-control" placeholder="Search Artist.." formControlName="searchArtist" (keyup)="searchByArtist(this)">
+                </div>
+            </form>
+        </div>
+        <audio src="{{songMP3}}" controls></audio>
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th>Song name</th>
+                <th>Song Album</th>
+                <th>Song Cover Image</th>
+                <th>Song Artist</th>
+                <th>Song Link</th>
+            </tr>
+            <tr *ngFor="let song of songData">
+                <td>{{song.songName}}</td>
+                <td>{{song.songAlbum}}</td>
+                <td><img src="{{song.songCoverImage}}" height="30px"></td>
+                <td>{{song.songArtist}}</td>
+                <td (click)="playSong(song.songLink)">{{song.songLink}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

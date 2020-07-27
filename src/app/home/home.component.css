@@ -1,0 +1,32 @@
+#matLink {
+    text-decoration: none;
+}
+
+.header {
+    text-align: center;
+    padding: 60px;
+}
+
+.ngx-demo-content {
+    margin: 20px 0px;
+}
+
+.ngx-demo-block button {
+    margin-right: 8px;
+}
+
+h2>a {
+    color: whitesmoke;
+    font-style: italic;
+}
+
+.create-playlist-btn {
+    position: relative !important;
+    top: 10px;
+    left: 10px;
+}
+
+.form {
+    position: relative;
+    padding: 20px;
+}

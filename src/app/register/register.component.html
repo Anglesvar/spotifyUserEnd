@@ -1,0 +1,25 @@
+<form [formGroup]="registerForm">
+
+    <div class="container">
+        <input type="text" placeholder="Enter first name" formControlName="firstName" name="uname" required>
+
+        <input type="text" placeholder="Enter last name" formControlName="lastName" name="uname" required>
+
+        <input type="number" placeholder="Enter mobile number" formControlName="mobileNumber" name="uname" required>
+
+        <input type="text" placeholder="Enter Display name" formControlName="displayName" name="uname" required>
+
+        <input type="text" placeholder="Enter Username" formControlName="email" name="uname" required>
+
+        <input type="password" placeholder="Enter Password" formControlName="password" name="psw" required>
+
+        <button type="submit" (click)="register()">Register</button>
+        <label>
+          <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+    </div>
+
+    <div class="container">
+        <a routerLink="/login" class="cancelbtn">Login</a>
+    </div>
+</form>
