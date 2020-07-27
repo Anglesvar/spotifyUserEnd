@@ -7,8 +7,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  hidden:boolean=true;
   constructor(private router: Router){
+    setInterval(function(){
+      if(localStorage.getItem('ownerId'))
+        this.hidden = false;
+   }, 1000);
+   
   }
+  
   title = 'Audio Task';
   logout(){
     localStorage.clear();
