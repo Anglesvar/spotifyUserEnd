@@ -12,7 +12,7 @@ export class LoginService {
     return this.http.post("https://spotify-chubb.azurewebsites.net/api/User/login",data);
   }
   postRegister(data): Observable<any>{
-    return this.http.post("https://spotify-chubb.azurewebsites.net/User/register",data);
+    return this.http.post("https://spotify-chubb.azurewebsites.net/api/User/register",data);
   }
   postUserInfo(id):Observable<any>{
     return this.http.post("https://spotify-chubb.azurewebsites.net/api/User/getuserinfo?id="+id,{id:id});

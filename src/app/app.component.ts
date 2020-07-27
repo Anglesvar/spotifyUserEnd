@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { SongService } from './service/song.service';
 
 @Component({
   selector: 'app-root',
@@ -8,17 +9,11 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   hidden:boolean=true;
-  constructor(private router: Router){
-    setInterval(function(){
-      if(localStorage.getItem('ownerId'))
-        this.hidden = false;
-   }, 1000);
+  songs:any;
+  constructor(){
    
   }
   
   title = 'Audio Task';
-  logout(){
-    localStorage.clear();
-    this.router.navigateByUrl("/login");
-  }
+  
 }

@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
       'searchAlbum': this.fb.control(''),
       'searchArtist': this.fb.control('')
     });
-    this.ownerId = 1;
+    this.ownerId = parseInt(localStorage.getItem('ownerId'));
     this.displayName = localStorage.getItem('displayName');
   }
   ngOnInit() {
@@ -61,8 +61,13 @@ export class HomeComponent implements OnInit {
       });
       console.log(this.songData);
     });
-    console.log(this.msaapPlaylist[0].title);
-
+  }
+  getAllSongs(){
+    this.songService.getSongs().subscribe(res => {
+      console.log(res);
+      this.songData = res;
+      this.searchForm.reset();
+    });
   }
   searchSong(value) {
     console.log(this.searchForm.value.searchSong);
@@ -75,6 +80,11 @@ export class HomeComponent implements OnInit {
       })
     }
   }
+  logout(){
+    localStorage.clear();
+    this.router.navigateByUrl("/login");
+  }
+
   searchByArtist(value) {
     console.log(this.searchForm.value.searchArtist);
     this.songData = [];

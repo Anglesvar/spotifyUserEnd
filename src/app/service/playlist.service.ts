@@ -9,13 +9,14 @@ export class PlaylistService {
 
   constructor(private http: HttpClient) { }
   postAddPlayList(data): Observable<any>{
-    return this.http.post("https://spotify-chubb.azurewebsites.net/api/PlayList/addplaylist",data);
+    return this.http.post("https://localhost:44381/api/PlayList/addplaylist",data);
   }
   getPlaylists():Observable<any>{
-    return this.http.post("https://spotify-chubb.azurewebsites.net/api/PlayList/getallplaylists?ownerId=1",{ownerId: 1});
+    let ownerId = parseInt(localStorage.getItem('ownerId'));
+    return this.http.post("https://localhost:44381/api/PlayList/getallplaylists?ownerId="+ownerId,{'ownerId':ownerId });
   }
   getSongsByPlaylist(id): Observable<any>{
-    return this.http.post("https://spotify-chubb.azurewebsites.net/api/PlayList/getsongsbyplaylist?id="+id,{id:id});
+    return this.http.post("https://localhost:44381/api/PlayList/getsongsbyplaylist?id="+id,{id:id});
   }
   getExcludedSongList(playlistId): Observable<any>{
     console.log(playlistId);

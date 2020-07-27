@@ -1,5 +1,6 @@
 <div style="color: seashell;z-index: 30;font-weight: bolder;position: absolute;top: 20px;right: 100px;">Welcome
     <mat-icon style="position: relative;top: 7px;">face</mat-icon>{{displayName}}</div>
+<button (click)="logout()" class="btn btn-secondary" style="position:absolute;right: 300px;top: 20px;z-index: 3;">Logout</button>
 <div class="row">
     <div class="col-3" style="background-color: rgba(255,255,255,0.8);height: 100vh;">
         <button class="create-playlist-btn" (click)="openPlaylistForm()" mat-raised-button color="primary">Create
@@ -98,6 +99,7 @@
                     <input type="text" class="form-control" placeholder="Search Artist.." formControlName="searchArtist" (keyup)="searchByArtist(this)">
                 </div>
             </form>
+            <button class="btn btn-secondary" (click)="getAllSongs()"><mat-icon>loop</mat-icon></button>
         </div>
         <audio src="{{songMP3}}" controls></audio>
         <table class="table table-striped table-bordered">
