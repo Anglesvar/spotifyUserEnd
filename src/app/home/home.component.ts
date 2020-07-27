@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
   displayOrNot:boolean=false;
 
   constructor(private router: Router,private songService: SongService, private fb: FormBuilder, private http: HttpClient, private playlistService: PlaylistService) {
+    window.location.reload()
     if(!localStorage.getItem("ownerId"))
       this.router.navigateByUrl("/login");
     this.playlistForm = this.fb.group({
