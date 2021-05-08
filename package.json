@@ -83,7 +83,7 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.5.2",
     "karma-teamcity-reporter": "^1.1.0",
-    "ng-packagr": "^9.0.8",
+    "ng-packagr": "^10.1.1",
     "node-sass": "^4.14.1",
     "protractor": "^6.0.0",
     "ts-node": "~8.6.2",
